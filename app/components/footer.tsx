@@ -1,4 +1,5 @@
 import { KeyboardEvent } from "react";
+import Image from 'next/image';
 interface FooterProps {
     input: string;
     setInput: (input: string) => void;
@@ -21,7 +22,7 @@ interface FooterProps {
           onClick={handleSend}
           className="ml-4 p-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-all"
         >
-          <img src="/arrow-up.svg" alt="soumettre" className="w-6 h-6" />
+          <Image src="/arrow-up.svg" alt="soumettre" className="w-6 h-6" />
         </button>
       </footer>
     );
