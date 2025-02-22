@@ -1,3 +1,4 @@
+import Image from 'next/image';
 export default function Header() {
   const handleClose = () => {
     if (window.confirm("Voulez-vous vraiment quitter cette page ?")) {
@@ -7,7 +8,7 @@ export default function Header() {
 
   return (
     <header className="bg-white h-16 shadow-md flex items-center px-4 fixed top-0 w-full z-10">
-      <img src="/180665068.png" alt="Logo" className="h-10 w-10 mr-2" />
+      <Image src="/180665068.png" alt="Logo" className="h-10 w-10 mr-2" />
       <h1 className="text-blue-500 font-extrabold text-3xl mx-auto">BKMind</h1>
       <button
         onClick={handleClose}
