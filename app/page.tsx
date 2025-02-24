@@ -36,8 +36,6 @@ export default function App() {
 
       const data = await res.json();
       setMessages([...newMessages, { sender: "bot", text: data.reply || "Je ne comprends pas." }]);
-    } catch (e) {
-      setMessages([...newMessages, { sender: "bot", text: "Erreur de communication." }]);
     } finally {
       setLoading(false);
     }
