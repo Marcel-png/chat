@@ -5,7 +5,6 @@ import Footer from "./components/footer";
 import MainSection from "./components/section";
 import Seo from "./components/op";
 
-
 export default function App() {
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -50,7 +49,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-b from-blue-50 to-blue-100">
-       <Seo
+      <Seo
         title="BKMind"
         description="Bienvenue sur BKMind."
         keywords="chat, bot, ia"
@@ -65,5 +64,3 @@ export default function App() {
     </div>
   );
 }
-
-
