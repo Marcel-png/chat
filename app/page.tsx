@@ -30,7 +30,7 @@ export default function App() {
   const handleSend = async () => {
     if (!input.trim()) return; // Ignore si l'entrée est vide
 
-    const newMessages = [...messages, { sender: "user", text: input }];
+    const newMessages: Message[] = [...messages, { sender: "user" as "user" , text: input }];
     setMessages(newMessages);
     setInput(""); // Réinitialisation du champ d'entrée
     setLoading(true);
@@ -47,7 +47,7 @@ export default function App() {
       }
 
       const data = await res.json();
-      setMessages([...newMessages, { sender: "bot", text: data.reply || "Je ne comprends pas." }]);
+      setMessages([...newMessages, { sender: "bot" as "bot", text: data.reply || "Je ne comprends pas." }]);
     } catch (error) {
       console.error("Erreur lors de l'envoi du message :", error);
       setMessages([...newMessages, { sender: "bot", text: "Erreur de communication." }]);
