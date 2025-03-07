@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, KeyboardEvent } from "react";
-import Header from "./components/header"; // Correction de "hearder"
+import Header from "./components/hearder"; // Correction de "hearder"
 import Footer from "./components/footer";
 import MainSection from "./components/section";
 import Seo from "./components/op";
