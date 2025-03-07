@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+    if (req.method !== "POST") {
+    return NextResponse.json({ reply: "Méthode non autorisée." }, { status: 405 });
+  }
   try {
     const { message } = await req.json();
 
