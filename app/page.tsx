@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect, KeyboardEvent } from "react";
- import Header from "./components/hearder";
+import Header from "./components/header"; // Correction de "hearder"
 import Footer from "./components/footer";
 import MainSection from "./components/section";
 import Seo from "./components/op";
 
-// Définition du type Message 
+// Définition du type Message
 type Message = {
   sender: "user" | "bot";
   text: string;
@@ -18,19 +18,34 @@ export default function App() {
 
   // Chargement des messages depuis le localStorage
   useEffect(() => {
-    const storedMessages = JSON.parse(localStorage.getItem("chatMessages") || "[]") as Message[];
-    setMessages(storedMessages);
+    try {
+      const storedMessages = JSON.parse(
+        localStorage.getItem("chatMessages") || "[]"
+      ) as Message[];
+      if (Array.isArray(storedMessages)) {
+        setMessages(storedMessages);
+      }
+    } catch (error) {
+      console.error("Erreur lors du chargement des messages :", error);
+    }
   }, []);
 
   // Sauvegarde des messages dans le localStorage
   useEffect(() => {
-    localStorage.setItem("chatMessages", JSON.stringify(messages));
+    try {
+      localStorage.setItem("chatMessages", JSON.stringify(messages));
+    } catch (error) {
+      console.error("Erreur lors de la sauvegarde des messages :", error);
+    }
   }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return; // Ignore si l'entrée est vide
 
-    const newMessages: Message[] = [...messages, { sender: "user" as "user" , text: input }];
+    const newMessages: Message[] = [
+      ...messages,
+      { sender: "user", text: input },
+    ];
     setMessages(newMessages);
     setInput(""); // Réinitialisation du champ d'entrée
     setLoading(true);
@@ -47,10 +62,16 @@ export default function App() {
       }
 
       const data = await res.json();
-      setMessages([...newMessages, { sender: "bot" as "bot", text: data.reply || "Je ne comprends pas." }]);
+      setMessages([
+        ...newMessages,
+        { sender: "bot", text: data.reply || "Je ne comprends pas." },
+      ]);
     } catch (error) {
       console.error("Erreur lors de l'envoi du message :", error);
-      setMessages([...newMessages, { sender: "bot", text: "Erreur de communication." }]);
+      setMessages([
+        ...newMessages,
+        { sender: "bot", text: "Erreur de communication." },
+      ]);
     } finally {
       setLoading(false);
     }
